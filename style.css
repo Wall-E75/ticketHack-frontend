@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    
+}
+.head {
+    padding: 10px 20px 15px 20px;
+    
+}
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.green{
+    color: #4faa91;
+}
+.style-li {
+    list-style-type: none;  
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#cart-link {
+    margin-right: 30px;
+}
+.accueil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(images/background.jpg);
+    background-size: cover;
+    height: 100vh;
+}
+
+.white {
+    color: white;
+}
+
+#resa {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    height: 65%;
+}
+
+#resa__choice {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-right: 20px;
+    width: 50%;
+    background-color: white;
+}
+
+#resa-output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-left: 20px;
+    width: 50%;
+    background-color: white;
+}
+
+.mini-train {
+    border-bottom: 3px solid #4faa91;
+    padding: 20px;
+    width: 150px;
+    height: 150px;
+}
+.champ-destination {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100px;
+}
+
+input {
+    height: 50px;
+    background-color: rgb(209, 206, 206);
+}
+
+.date {
+    width: 100%
+}
+
+.btn {
+    border: 1px solid black;
+}
+
+.btn-form {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    background-color:rgb(90, 137, 20);
+    color: white;
+}
+
+#default-output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#default-output p {
+    margin-top: 50px;
+}

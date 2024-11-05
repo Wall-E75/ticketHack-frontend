@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Ticket Hack</title>
+</head>
+<body>
+    <header class="head row">
+        <h1 class="green">Tickethack</h1>
+        <nav class="row">
+            <ul class="row">
+                <a class="style-li" href="cart.html"><li id="cart-link">Cart</li></a>
+                <a class="style-li" href="booking.html"><li>Bookings</li></a>
+            </ul>
+        </nav>
+    </header>
+    <main class="accueil">
+        <h1 class="white">Explore the World effortlessly by train</h1>
+        <p class="white">Compare, book and enjoy cheap prices for train tickets: your journey starts on Tickethack</p>
+        <div id="resa">
+            <div id="resa__choice">
+                <div class="champ-destination">
+                    <input id='departure' type="text" placeholder="Departure">
+                    <input id='arrival' type="text" placeholder="Arrival">
+                </div>               
+                <input class="date" type="date">
+                <button class="btn btn-form">Search</button>
+            </div>
+            <div id="resa-output">
+                <div id="default-output">
+                    <img class="mini-train" src="./images/train.png">
+                    <p>It's time to book your future trip</p>
+                </div>
+               
+                <ul></ul>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
