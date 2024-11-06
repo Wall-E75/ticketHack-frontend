@@ -57,7 +57,9 @@ document.querySelector('#btn-search').addEventListener('click', ()=> {
     // console.log(departInputElement, arrivalInputElement)
    
 })
-
+/**
+ * Fonction pour rajouter un book dans notre collection cart
+ */
 function addBook() {
     for (let i =0; i < document.querySelectorAll('.btn-book').length; i++) {
         document.querySelectorAll('.btn-book')[i].addEventListener('click', function () {
