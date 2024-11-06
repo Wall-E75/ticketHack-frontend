@@ -2,15 +2,15 @@
 
 document.querySelector('#btn-search').addEventListener('click', ()=> {
     //Utilisation de variables pour les relations input
-    const departInputElement = document.querySelector('#departure').value;
-    const arrivalInputElement = document.querySelector('#arrival').value;
-    const dateInputElement = document.querySelector('#date').value;
+    const departInputElement = document.querySelector('#departure');
+    const arrivalInputElement = document.querySelector('#arrival');
+    const dateInputElement = document.querySelector('#date');
     console.log(departInputElement)
     //relation avec la partie affichage
     const defaultOutputElem = document.querySelector('#default-output');
     const notfoundImg = 'notfound';
     
-    if (!departInputElement || !arrivalInputElement || ! dateInputElement) {    
+    if (!departInputElement.value || !arrivalInputElement.value || ! dateInputElement.value) {    
         document.querySelector('#resa-output').innerHTML = `
             <div id="default-output">
                 <img class="mini-train" src="./images/${notfoundImg}.png">
@@ -19,7 +19,7 @@ document.querySelector('#btn-search').addEventListener('click', ()=> {
         `
         return;
     }
-    fetch(`http://localhost:3000/trips/${departInputElement}/${arrivalInputElement}/${dateInputElement}`)
+    fetch(`http://localhost:3000/trips/${departInputElement.value}/${arrivalInputElement.value}/${dateInputElement.value}`)
     .then(response => response.json())
     .then(data => {
         console.log(data) 
@@ -43,6 +43,9 @@ document.querySelector('#btn-search').addEventListener('click', ()=> {
                 
             }
             addBook();
+            departInputElement.value = ''
+            arrivalInputElement.value = ''
+            dateInputElement.value = ''
             
         } 
     //     document.querySelector('#resa-output').innerHTML = `
@@ -52,7 +55,7 @@ document.querySelector('#btn-search').addEventListener('click', ()=> {
     //         </div>
     //     `
     // console.log(data);
-     departInputElement.value = ''
+     
 })
     // console.log(departInputElement, arrivalInputElement)
    
@@ -71,6 +74,12 @@ function addBook() {
             }).then(response => response.json())
                 .then(data => {
                     console.log(data);
+                    if (data) {
+                        console.log('La page change pour cart.html')
+                        // window.location.assign('./cart.html');
+                        return
+                    }
+                    
                 })
 
         })
