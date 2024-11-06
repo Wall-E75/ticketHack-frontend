@@ -16,7 +16,7 @@ fetch(`http://localhost:3000/carts`)
         travelDomElem.innerHTML += `
         <div id="cart-list">
             <span>${data.Cart[i].departure} > ${data.Cart[i].arrival}</span> <span>${heure} : ${minute}</span> <span id="spanPrice">${data.Cart[i].price}€</span>
-            <button id="${deleteCart}">X</button>
+            <button id="${deleteCart}" class='btn btn-delete'>X</button>
         </div>
     `
     let totalPrice = 0
