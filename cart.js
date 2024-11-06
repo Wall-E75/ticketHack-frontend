@@ -16,7 +16,7 @@ fetch(`http://localhost:3000/carts`)
         console.log(data.Cart[i])       
         travelDomElem.innerHTML += `
         <div id="cart-list">
-            <span>${data.Cart[i].departure} > ${data.Cart[i].arrival}</span> <span>${heure} : ${minute}</span> <span id="spanPrice">${data.Cart[i].price}€</span>
+            <span>${data.Cart[i].departure} > ${data.Cart[i].arrival}</span> <span>${heure} : ${minute}</span> <span id="spanPrice">${data.Cart[i].price}</span>€
             <button id="${deleteCart}" class='btn btn-delete'>X</button>
         </div>
     `
@@ -33,9 +33,20 @@ fetch(`http://localhost:3000/carts`)
     
     }
     console.log(document.querySelectorAll('#spanPrice').length)
-    let total
+    let totalSpanPrice = document.querySelectorAll('#spanPrice')
+    let price = 0;
     let totalPrice = 0
-    
+
+    if (totalSpanPrice.length > 0) {
+        for (let i=0; i<totalSpanPrice.length; i++) {
+            price += Number(totalSpanPrice[i].textContent)
+            console.log(price)
+        }
+        totalPrice = price * totalSpanPrice.length
+        console.log(totalPrice)
+       
+    }
+    console.log(totalPrice)
     // console.log(data)
 })
 
