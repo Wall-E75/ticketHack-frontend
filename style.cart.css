@@ -1,3 +1,6 @@
+* {
+    border: solid, 1px, black
+}
 .head {
     padding: 10px 20px 15px 20px;
     background-color: white;
@@ -38,8 +41,8 @@ body {
 #content {
     display: flex;
     flex-direction: column;
-    align-items: space-between;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     height: 30%;
     width: 70%;
     background-color: white;
@@ -47,9 +50,37 @@ body {
     
 
 }
+#travel {
 
+}
 #foot {
-    
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(2, 21, 60);
     width: 100%;
-    height: 10%;
+    height: 25%;
+}
+.mycart {
+    font-size: large;
+    text-align: center;
+}
+
+#total {
+    color: white;
+}
+.btn {
+    border: 1px solid black;
+    background-color:rgb(90, 137, 20);
+    color: white;
+    cursor: pointer;
+}
+#btn:hover {
+    outline: 1px #ffffff solid;
+    
+  }
+.btn-form {
+    width: 10%;
+    height: 30px;
+    border-radius: 5px;
 }
