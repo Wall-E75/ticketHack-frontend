@@ -6,6 +6,7 @@ fetch(`http://localhost:3000/carts`)
     //affichage heure
    
     console.log(data.Cart[0].departure)
+
     for (let i =0; i<data.Cart.length; i++) {
         const dateString = data.Cart[i].date;
         const dateObj = new Date(dateString);
@@ -19,16 +20,17 @@ fetch(`http://localhost:3000/carts`)
             <button id="${deleteCart}" class='btn btn-delete'>X</button>
         </div>
     `
+    console.log(document.querySelectorAll('#spanPrice').length)
     let totalPrice = 0
-    if (travelDomElem.length > 0) {
+    // if (travelDomElem.length > 0) {
         
-        travelDomElem.forEach(book => {
-        totalPrice += (book.price * book.length);
-        console.log(totalPrice)
-      });
-    } else {
-        console.log(totalPrice = book.price)
-    }
+    //     travelDomElem.forEach(book => {
+    //     totalPrice += (book.price * book.length);
+    //     console.log(totalPrice)
+    //   });
+    // } else {
+    //     console.log(totalPrice = book.price)
+    // }
     
     }
     
@@ -36,18 +38,18 @@ fetch(`http://localhost:3000/carts`)
 })
 
 
-const totalPrice = () => {
-    let TotalPrice
-    if (products.length > 0) {
-    let totalPrice = 0;
+// const totalPrice = () => {
+//     let TotalPrice
+//     if (products.length > 0) {
+//     let totalPrice = 0;
    
-    products.forEach(book => {
-      totalPrice += (book.price * book[i]);
-    });
+//     products.forEach(book => {
+//       totalPrice += (book.price * book[i]);
+//     });
   
-    spanTotalPrice.textContent = totalPrice + " €";
-    }
-  }
+//     spanTotalPrice.textContent = totalPrice + " €";
+//     }
+//   }
   
-  totalPrice();
+//   totalPrice();
   
