@@ -20,8 +20,7 @@ fetch(`http://localhost:3000/carts`)
             <button id="${deleteCart}" class='btn btn-delete'>X</button>
         </div>
     `
-    console.log(document.querySelectorAll('#spanPrice').length)
-    let totalPrice = 0
+    
     // if (travelDomElem.length > 0) {
         
     //     travelDomElem.forEach(book => {
@@ -33,6 +32,9 @@ fetch(`http://localhost:3000/carts`)
     // }
     
     }
+    console.log(document.querySelectorAll('#spanPrice').length)
+    let total
+    let totalPrice = 0
     
     // console.log(data)
 })
