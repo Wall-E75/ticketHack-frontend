@@ -12,14 +12,14 @@ fetch(`http://localhost:3000/carts`)
         const dateObj = new Date(dateString);
         const heure = dateObj.getHours();
         const minute = dateObj.getMinutes() < 10 ? "0"+ dateObj.getMinutes() : dateObj.getMinutes();
-        let deleteCart = document.getElementById('deletCart');
         console.log(data.Cart[i])       
         travelDomElem.innerHTML += `
         <div id="cart-list">
             <span>${data.Cart[i].departure} > ${data.Cart[i].arrival}</span> <span>${heure} : ${minute}</span> <span id="spanPrice">${data.Cart[i].price}</span>€
-            <button id="${deleteCart}" class='btn btn-delete'>X</button>
+            <button class="deleteCart btn btn-delete">X</button>
         </div>
     `
+
     
     // if (travelDomElem.length > 0) {
         
@@ -32,25 +32,32 @@ fetch(`http://localhost:3000/carts`)
     // }
     
     }
-    console.log(document.querySelectorAll('#spanPrice').length)
-    let totalSpanPrice = document.querySelectorAll('#spanPrice')
-    let price = 0;
-    let totalPrice = 0
-
-    if (totalSpanPrice.length > 0) {
-        for (let i=0; i<totalSpanPrice.length; i++) {
-            price += Number(totalSpanPrice[i].textContent)
-            console.log(price)
-        }
-        totalPrice = price * totalSpanPrice.length
-        console.log(totalPrice)
-       
-    }
-    console.log(totalPrice)
+   
     // console.log(data)
+    deleteButton()
+    totalCart();
 })
 
-
+function deleteButton() {
+    
+    const deleteButtons = document.querySelectorAll('.deleteCart');
+    for (let i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener('click', function() {
+        fetch(`http://localhost:3000/carts/carts/${this.name}`, {method: 'DELETE'})
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        if(data.result) {
+            this.parentNode.remove();
+        }
+    })
+    
+    // bookCount = document.querySelectorAll('p').length;
+    // document.querySelector('#count').textContent = messagesCount;
+    console.log('clique')
+  })
+}
+}
 // const totalPrice = () => {
 //     let TotalPrice
 //     if (products.length > 0) {
@@ -66,3 +73,19 @@ fetch(`http://localhost:3000/carts`)
   
 //   totalPrice();
   
+function totalCart() {
+    let totalSpanPrice = document.querySelectorAll('#spanPrice')
+    let price = 0;
+    let totalPrice = 0
+    if (totalSpanPrice.length > 0) {
+        for (let i=0; i<totalSpanPrice.length; i++) {
+            price += Number(totalSpanPrice[i].textContent)
+            // console.log(price)
+        }
+        totalPrice = price;
+        console.log(totalPrice)
+       
+    }
+    console.log(totalPrice)
+    document.querySelector('#total').textContent += totalPrice
+}
