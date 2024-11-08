@@ -16,7 +16,7 @@ fetch(`http://localhost:3000/carts`)
         travelDomElem.innerHTML += `
         <div id="cart-list">
             <span>${data.Cart[i].departure} > ${data.Cart[i].arrival}</span> <span>${heure}:${minute}</span> <span><span id="spanPrice">${data.Cart[i].price}</span>€</span>
-            <button class="deleteCart btn btn-delete">X</button>
+            <button class="deleteCart btn btn-delete" data-id="${data.Cart[i]._id}">X</button>
         </div>
     `
 
@@ -41,16 +41,22 @@ fetch(`http://localhost:3000/carts`)
 function deleteButton() {
     
     const deleteButtons = document.querySelectorAll('.deleteCart');
+    
     for (let i = 0; i < deleteButtons.length; i++) {
     deleteButtons[i].addEventListener('click', function() {
-        fetch(`http://localhost:3000/carts/carts/${this.name}`, {method: 'DELETE'})
+        const cartId = this.getAttribute('data-id');
+        fetch(`http://localhost:3000/carts/${cartId}`, {method: 'DELETE'})
     .then(response => response.json())
     .then(data => {
         console.log(data)
         if(data.result) {
             this.parentNode.remove();
+
+            setTimeout(totalCart, 100);
+    
         }
     })
+    
     
     // bookCount = document.querySelectorAll('p').length;
     // document.querySelector('#count').textContent = messagesCount;
@@ -58,25 +64,14 @@ function deleteButton() {
   })
 }
 }
-// const totalPrice = () => {
-//     let TotalPrice
-//     if (products.length > 0) {
-//     let totalPrice = 0;
-   
-//     products.forEach(book => {
-//       totalPrice += (book.price * book[i]);
-//     });
-  
-//     spanTotalPrice.textContent = totalPrice + " €";
-//     }
-//   }
-  
-//   totalPrice();
+
   
 function totalCart() {
     let totalSpanPrice = document.querySelectorAll('#spanPrice')
     let price = 0;
     let totalPrice = 0
+    //calcule le total des books en cherchant combien de books sont disponible
+    //Puis les additionne dans la variable price, puis on met à jour l'affichage
     if (totalSpanPrice.length > 0) {
         for (let i=0; i<totalSpanPrice.length; i++) {
             price += Number(totalSpanPrice[i].textContent)
@@ -84,8 +79,7 @@ function totalCart() {
         }
         totalPrice = price;
         console.log(totalPrice)
-       
-    }
-    console.log(totalPrice)
-    document.querySelector('#total').textContent += totalPrice
+    document.querySelector('#total').textContent = totalPrice
+    } 
+   
 }
