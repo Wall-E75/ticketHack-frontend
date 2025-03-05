@@ -18,7 +18,7 @@ document.querySelector('#btn-search').addEventListener('click', ()=> {
         `
         return;
     }
-    fetch(`http://localhost:3000/trips/${departInputElement.value}/${arrivalInputElement.value}/${dateInputElement.value}`)
+    fetch(`https://ticket-hack-backend-five.vercel.app/trips/${departInputElement.value}/${arrivalInputElement.value}/${dateInputElement.value}`)
     .then(response => response.json())
     .then(data => {
         console.log(data) 
@@ -66,7 +66,7 @@ function addBook() {
     for (let i =0; i < document.querySelectorAll('.btn-book').length; i++) {
         document.querySelectorAll('.btn-book')[i].addEventListener('click', function () {
             console.log('click', this.id)
-            fetch(`http://localhost:3000/carts`, {
+            fetch(`https://ticket-hack-backend-five.vercel.app/carts`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({id: this.id}),
@@ -98,7 +98,7 @@ function deleteBook() {
 }
 
 function searchReload() {
-    fetch(`http://localhost:3000/trips/${departInputElement.value}/${arrivalInputElement.value}/${dateInputElement.value}`)
+    fetch(`https://ticket-hack-backend-five.vercel.app/trips/${departInputElement.value}/${arrivalInputElement.value}/${dateInputElement.value}`)
     .then(response => response.json())
     .then(data => {
         console.log(data) 
