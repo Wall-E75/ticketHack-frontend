@@ -1,4 +1,7 @@
 const travelDomElem = document.querySelector('#travel');
+const btnPurcahse = document.getElementById('btn-purchase');
+
+
 
 fetch(`http://localhost:3000/carts`)
 .then(response => response.json())
@@ -6,68 +9,74 @@ fetch(`http://localhost:3000/carts`)
     //affichage heure
    
     console.log(data.Cart[0].departure)
+    travelDomElem.innerHTML = '';
+    let bookingIds = [];
 
     for (let i =0; i<data.Cart.length; i++) {
         const dateString = data.Cart[i].date;
         const dateObj = new Date(dateString);
         const heure = dateObj.getHours();
         const minute = dateObj.getMinutes() < 10 ? "0"+ dateObj.getMinutes() : dateObj.getMinutes();
-        console.log(data.Cart[i])       
+        console.log("Data Cart =>",data.Cart)       
         travelDomElem.innerHTML += `
-        <div id="cart-list">
-            <span>${data.Cart[i].departure} > ${data.Cart[i].arrival}</span> <span>${heure}:${minute}</span> <span><span id="spanPrice">${data.Cart[i].price}</span>€</span>
+        <div class="cart-list" data-id="${data.Cart[i]._id}">
+            <span>${data.Cart[i].departure} > ${data.Cart[i].arrival}</span> <span>${heure}:${minute}</span> <span><span class="spanPrice">${data.Cart[i].price}</span>€</span>
             <button class="deleteCart btn btn-delete" data-id="${data.Cart[i]._id}">X</button>
         </div>
     `
-
+    bookingIds.push(data.Cart[i]._id);
+    console.log('IDS =>',bookingIds)
     
-    // if (travelDomElem.length > 0) {
-        
-    //     travelDomElem.forEach(book => {
-    //     totalPrice += (book.price * book.length);
-    //     console.log(totalPrice)
-    //   });
-    // } else {
-    //     console.log(totalPrice = book.price)
-    // }
-    
+    console.log('id =>',{id: data.Cart[i]._id})
     }
-   
-    // console.log(data)
-    deleteButton()
     totalCart();
+    deleteButton();
+    
+    btnPurcahse.addEventListener('click', ()=> {
+        console.log('click')
+        if (bookingIds.length === 0) return alert("Votre panier est vide")
+        fetch('http://localhost:3000/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type' : 'application/json' },
+            body: JSON.stringify({ id: bookingIds })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result) {
+                travelDomElem.textContent = '';
+                document.getElementById('total').textContent = 'Total : 0€';
+                window.location.href = '/bookings.html'; // Redirection après paiement
+            }
+        })
+        
+    })
+    console.log('Data after purschase =>',data)
 })
 
 function deleteButton() {
     
-    const deleteButtons = document.querySelectorAll('.deleteCart');
-    
-    for (let i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].addEventListener('click', function() {
-        const cartId = this.getAttribute('data-id');
-        fetch(`http://localhost:3000/carts/${cartId}`, {method: 'DELETE'})
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        if(data.result) {
-            this.parentNode.remove();
+    document.querySelectorAll('.deleteCart').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const cartId = event.target.getAttribute('data-id');
 
-            setTimeout(totalCart, 100);
-    
-        }
+            fetch(`http://localhodt:3000/carts/${cartId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result) {
+                    event.target.parentNode.remove();
+                    totalCart();
+                }
+            })
+        })
+
     })
-    
-    
-    // bookCount = document.querySelectorAll('p').length;
-    // document.querySelector('#count').textContent = messagesCount;
-    console.log('clique')
-  })
-}
+   
 }
 
-  
 function totalCart() {
-    let totalSpanPrice = document.querySelectorAll('#spanPrice')
+    let totalSpanPrice = document.querySelectorAll('.spanPrice')
     let price = 0;
     let totalPrice = 0
     //calcule le total des books en cherchant combien de books sont disponible
@@ -79,7 +88,7 @@ function totalCart() {
         }
         totalPrice = price;
         console.log(totalPrice)
-    document.querySelector('#total').textContent = totalPrice
+        document.querySelector('#total').textContent = 'Total : ' + totalPrice + '€'
     } 
    
 }

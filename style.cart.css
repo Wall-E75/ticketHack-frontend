@@ -75,7 +75,7 @@ body {
     font-size: large;
     text-align: center;
 }
-#cart-list {
+.cart-list {
     display: flex;
     flex-direction: row;
     width: 90%;
@@ -96,7 +96,7 @@ body {
     cursor: pointer;
     margin-right: 2%;
 }
-#btn:hover {
+.btn:hover {
     outline: 1px #ffffff solid;
     
   }
