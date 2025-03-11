@@ -1,4 +1,3 @@
-console.log('bookings')
 const containerDomElement = document.querySelector('.container');
 const noBookDomElement = document.querySelector('.no-booking');
 const bookDivELem = document.createElement('div');
@@ -8,7 +7,6 @@ const booksData = async () => { //on recupere les reservation du panier de la pa
     try {
         const response = await fetch('https://ticket-hack-backend-five.vercel.app/bookings');
         const data = await response.json();
-        console.log('Bookings data =>', data)
         if (data) {
             noBookDomElement.style.display = 'none';
             bookDivELem.style.display = 'flex';
@@ -34,12 +32,6 @@ const showBooking = async () => {
                 let hoursBefore = Math.floor(timesBefore / 60);
                 let minutesBefore = timesBefore % 60;
                 let timeRemaining = `${hoursBefore}h ${minutesBefore}m`;
-                console.log('Date now =>', Date.now());
-                console.log('timesBefore', timesBefore);
-                console.log('heure =>', heure);
-                console.log('date =>', date);
-                console.log('minute =>', minute);
-                console.log("id =>", books[i]._id)
                 
                 bookDivELem.innerHTML = `
                 <h2 class="book-title">My bookings</h2>
@@ -48,12 +40,9 @@ const showBooking = async () => {
                 </div>
                 <p class="book-text">Enjoy your travel with TicketHack</p>
                 `
-                console.log('Récup =>', books[i])
             }
-            console.log('pas de recup')
             
         }
-        console.log('données show =>', books)
         containerDomElement.appendChild(bookDivELem)
 
     } catch(error) {
