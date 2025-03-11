@@ -12,7 +12,6 @@ const booksData = async () => { //on recupere les reservation du panier de la pa
         if (data) {
             noBookDomElement.style.display = 'none';
             bookDivELem.style.display = 'flex';
-
         }
         return data.books;
 
