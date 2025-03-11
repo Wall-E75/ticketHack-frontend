@@ -31,6 +31,9 @@ const showBooking = async () => {
                 let minute = date.getMinutes() < 10 ? "0"+ date.getMinutes() : date.getMinutes();
                 let timesBefore = date.getTime() - Date.now();
                 timesBefore = Math.floor(timesBefore / 60000);
+                let hoursBefore = Math.floor(timesBefore / 60);
+                let minutesBefore = timesBefore % 60;
+                let timeRemaining = `${hoursBefore}h ${minutesBefore}m`;
                 console.log('Date now =>', Date.now());
                 console.log('timesBefore', timesBefore);
                 console.log('heure =>', heure);
@@ -41,7 +44,7 @@ const showBooking = async () => {
                 bookDivELem.innerHTML = `
                 <h2 class="book-title">My bookings</h2>
                 <div class="book-list" data-id="${books[i]._id}">
-                    <span>${books[i].departure} > ${books[i].arrival}</span> <span>${heure}:${minute}</span> <span><span class="spanPrice">${books[i].price}</span>€</span> <span>Départure in ${timesBefore}</span>
+                    <span>${books[i].departure} > ${books[i].arrival}</span> <span>${heure}:${minute}</span> <span><span class="spanPrice">${books[i].price}</span>€</span> <span>Départure in ${timeRemaining}</span>
                 </div>
                 <p class="book-text">Enjoy your travel with TicketHack</p>
                 `
