@@ -75,7 +75,7 @@ function addBook() {
                     console.log(data);
                     if (data) {
                         console.log('La page change pour cart.html')
-                        // window.location.assign('./cart.html');
+                        window.location.assign('./cart.html');
                         return
                     }
                     
